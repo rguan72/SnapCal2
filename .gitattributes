@@ -1,0 +1,7 @@
+*.cert filter=git-crypt diff=git-crypt
+*.key filter=git-crypt diff=git-crypt
+*.crt filter=git-crypt diff=git-crypt
+*.gpg filter=git-crypt diff=git-crypt
+
+# encrypt secret key
+SnapCal2/settings.py filter=git-crypt diff=git-crypt
