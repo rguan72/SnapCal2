@@ -117,5 +117,8 @@ dmypy.json
 # libraries
 lib/
 
-# For deployment go GAE
-static/
+# For deployment to GAE
+cloud_sql_proxy
+
+# Created for deployment to GAE
+/static

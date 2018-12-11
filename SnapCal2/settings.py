@@ -25,7 +25,7 @@ SECRET_KEY = '4$+-k-62&p+q&l*i^b^ijcmk)o2ua^90aei!mijx5mkiexjr$h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'snapcal2-225121.appspot.com']
 
 
 # Application definition
