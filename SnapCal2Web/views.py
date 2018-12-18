@@ -2,11 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from SnapCal2.settings import BASE_DIR
 from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from googleapiclient.discovery import build
 from oauth2client import file, client, tools
 from httplib2 import Http
 import base64
 import time
+import json
 from SnapCal2Web.snapcv import CVHelper
 
 # Decorator for oauth. Any way to make it non global?
@@ -28,20 +31,39 @@ class ProcessImageResponse(APIView):
         pass
 
     def post(self, request):
+        # get calendar authorization
+        # SCOPES = 'https://www.googleapis.com/auth/calendar.events'
+        # # modify how store works
+        # store = file.Storage('token.json')
+        # creds = store.get()
+        # if not creds or creds.invalid:
+        #     flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+        #     creds = tools.run_flow(creds, store)
+
         try:
             image = request.data['data']
             if image is None:
                 raise KeyError
         except KeyError:
+            print(request.data)
             msg = {'Error': 'Bad Request'}
+            return Response(msg, status=status.HTTP_400_BAD_REQUEST)
 
         # remove b64 header
         b64image = image[image.find("base64,")+7:]
         image = base64.b64decode(b64image)
         cvhelper = CVHelper()
-        cvhelper.detect(image)
+        texts = cvhelper.detect(image)
+        descriptions = []
+        for text in texts:
+            descriptions.append(text.description)
 
-        return HttpResponse('')
+        data = dict(descriptions=descriptions)
+        output_dict = json.dumps(data)
+        output_json = json.loads(output_dict)
+
+        # return object with calendar events added
+        return Response(output_json)
 
 # TODO: Implement properly
 class CalAuth(APIView):

@@ -52,6 +52,9 @@ function sendImage() {
           document.getElementById('indText').innerHTML = 'Waiting ...';
         }, 3000);
 
+        // TODO: tell users what events were added
+
+
         return;
       }
     })
@@ -61,42 +64,28 @@ function sendImage() {
 }
 
 function authorize() {
-  data = {}
-  let req = new Request(
-    'API/auth',
-    {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {'Content-Type':
-      'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(data)
-    }
-  );
+  // gapi.load('client', start)
+  let GoogleAuth;
+  gapi.client.init({
+    'apiKey': 'AIzaSyC6bZB-VpAqu95qxvdBPUT9E9z42WeR48k',
+    'clientId':'1039924587363-9dqplughrhtdofa4qb5ct42plse0jv6t.apps.googleusercontent.com',
+    'scope': 'https://www.googleapis.com/auth/calendar.events',
+  }).then(function() {
+    GoogleAuth = gapi.auth2.getAuthInstance();
+    GoogleAuth.isSignedIn.listen(updateSigninStatus);
+  });
 
-  fetch(req)
-    .then(function(response){
-      if (response.status !== 200) {
-        console.log('Issue encountered: Status Code -- ' + response.status);
-        return;
-      }
-      else {
-        return;
-      }
-    })
-    .catch(function(error){
-      console.log('Fetch Error: -S', error);
-    });
+  GoogleAuth.signIn();
+
+
 }
 
 function addButtonListeners() {
   document.getElementById('camBtn').addEventListener('click', function(){
     sendImage();
   });
-  document.getElementById('authBtn').addEventListener('click', function(){
-    authorize();
-  });
+  // document.getElementById('authBtn').addEventListener('click', function(){
+  //   authorize();
+  // });
 
 }
