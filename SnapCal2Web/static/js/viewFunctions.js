@@ -63,23 +63,6 @@ function sendImage() {
     });
 }
 
-function authorize() {
-  // gapi.load('client', start)
-  let GoogleAuth;
-  gapi.client.init({
-    'apiKey': 'AIzaSyC6bZB-VpAqu95qxvdBPUT9E9z42WeR48k',
-    'clientId':'1039924587363-9dqplughrhtdofa4qb5ct42plse0jv6t.apps.googleusercontent.com',
-    'scope': 'https://www.googleapis.com/auth/calendar.events',
-  }).then(function() {
-    GoogleAuth = gapi.auth2.getAuthInstance();
-    GoogleAuth.isSignedIn.listen(updateSigninStatus);
-  });
-
-  GoogleAuth.signIn();
-
-
-}
-
 function addButtonListeners() {
   document.getElementById('camBtn').addEventListener('click', function(){
     sendImage();
