@@ -16,17 +16,29 @@ In 2018, you shouldn't have to manually enter the dates of the mass meetings you
 With SnapCal, you can an event on a flier to your calendar with just one click. SnapCal uses computer vision (including the Google Cloud Platform and Cloud Vision API) and the Google Calendar API to extract event dates from a photo you take on your device.
 
 # Development prerequisites
-Make sure you have pip installed on your system.
-Create a virtual environment with Python version 2.7.
+Make sure you have pip and pipenv installed on your system.
+Create a virtual environment with Python version 3.7.
 
 
 #Install necessary packages.
-Run these commands within the project root directory (SnapCalWeb)
+Run these commands within the project root directory (SnapCal2)
 ```
 (myenv)$ pipenv install
+
+(myenv)$ pip install -r requirements.txt
+
+(myenv)$ pipenv lock
 ```
+#Run in the future
+Get in the virtualenv:
+```
+(myenv)$ pipenv shell
+```
+Run the Django app locally on your computer. Note that you will have to make
+your own settings.py file (or ask the project maintainer) as it has been encrypted.
+
 # Run app
 This is being developed and deployed on Google Cloud Platform.
 
 # Access the app as a consumer, not developer:
-Search https://snapcalweb/appspot.com
+[SnapCal2](https://snapcal2-225121.appspot.com)

@@ -4,4 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('API/img_process', views.ProcessImageResponse.as_view(), name='process_image'),
+    path('API/auth', views.CalAuth.as_view(), name='auth'),
 ]

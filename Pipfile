@@ -6,6 +6,12 @@ name = "pypi"
 [packages]
 django = "*"
 pymysql = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+"oauth2client" = "*"
+apiclient = "*"
+google-api-python-client = "*"
 
 [dev-packages]
 
