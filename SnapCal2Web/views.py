@@ -31,7 +31,6 @@ class ProcessImageResponse(APIView):
         pass
 
     def post(self, request):
-
         try:
             image = request.data['data']
             if image is None:
