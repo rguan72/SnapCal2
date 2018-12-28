@@ -11,12 +11,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href={% static "css/custom.css" %}>
-    <!-- Google APIs -->
-    <script src="https://apis.google.com/js/api.js"></script>
 
     <title>SnapCal</title>
-
   </head>
+
   <body>
     <h1>SnapCal2</h1>
     <h2> Take pictures. Add them to your Google Calendar! </h2>
@@ -28,19 +26,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <!-- Javascript imports -->
-    <script src={% static 'js/viewFunctions.js' %}></script>
-
+    <script src={% static "js/viewFunctions.js" %}></script>
 
     <!-- Initialize video -->
     <script>getCameraAccess();</script>
     <video id="player" controls autoplay></video>
     <canvas id="canvas" width=320 height=240 hidden=true></canvas>
 
+    <button id="signout_button">Sign Out</button>
+    <button id="authorize_button">Authorize</button>
+
     <div class="row-1">
       <button type="button" class="btn btn-primary btn-lg" id="camBtn">Take Photo</button>
       <!-- <button type="button" class="btn btn-secondary" id="authBtn"> Authorize Google Calendar</button> -->
     </div>
-    <script>addButtonListeners();</script>
 
     <div class="row-2-sm top-buffer">
       <div class="progress">
@@ -50,5 +49,36 @@
       </div>
     </div>
 
+    <!-- <ul class="nav nav-pills">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Menu 1</a></li>
+      <li><a href="#">Menu 2</a></li>
+      <li><a href="#">Menu 3</a></li>
+    </ul> -->
+
+    <div class="row-3 top-buffer" id="input1">
+        <div class="input-group">
+          <input type="text" class="form-control top-buffer" placeholder="Event Summary" id="eventEntry" />
+          <input type="text" class="form-control top-buffer" placeholder="Location" id="locationEntry" />
+        </div>
+        <div class="input-group">
+          <input type="date" class="form-control" placeholder="Start date" id="startdateEntry" />
+          <input type="time" class="form-control" placeholder="Start time" id="starttimeEntry" />
+          <input type="date" class="form-control" placeholder="End date" id="enddateEntry" />
+          <input type="time" class="form-control" placeholder="End time" id="endtimeEntry" />
+        </div>
+        <button type="button" class="btn btn-secondary top-buffer" id="submitBtn">Add Event</button>
+        <div role="alert" id="msg"></div>
+    </div>
+
+
+  <!-- Gcal Auth imports -->
+  <script src={% static "js/gcalauth.js" %}></script>
+
+  <script>addButtonListeners();</script>
+  <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
   </body>
 </html>

@@ -31,14 +31,6 @@ class ProcessImageResponse(APIView):
         pass
 
     def post(self, request):
-        # get calendar authorization
-        # SCOPES = 'https://www.googleapis.com/auth/calendar.events'
-        # # modify how store works
-        # store = file.Storage('token.json')
-        # creds = store.get()
-        # if not creds or creds.invalid:
-        #     flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-        #     creds = tools.run_flow(creds, store)
 
         try:
             image = request.data['data']
