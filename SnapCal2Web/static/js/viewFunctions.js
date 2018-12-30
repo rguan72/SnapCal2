@@ -68,11 +68,18 @@ function filloutEvents(data) {
   // Get rid of elements from previous photos taken
   if ($('#events-tab').children().length > 1) {
     $('#events-tab').children().slice(1).remove();
+    // make first tab selected
+    $('#events-tab').children().children().attr('class', 'nav-link active');
+    $('#events-tab').children().children().attr('aria-selected', 'true');
   }
 
   if ($('#events-tabContent').children().length > 1) {
     $('#events-tabContent').children().slice(1).remove();
+    // make first input selected
+    $('#events-tabContent').children().attr('class', 'tab-pane fade show active');
   }
+
+
 
   const summary1 = document.getElementById('event1EntryCont');
   if (data.descriptions.length == 1) {
