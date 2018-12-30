@@ -36,44 +36,18 @@ class ProcessImageResponse(APIView):
             if image is None:
                 raise KeyError
         except KeyError:
-            print(request.data)
             msg = {'Error': 'Bad Request'}
             return Response(msg, status=status.HTTP_400_BAD_REQUEST)
 
         # remove b64 header
-        b64image = image[image.find("base64,")+7:]
+        b64image = image[image.find('base64,')+7:]
         image = base64.b64decode(b64image)
         cvhelper = CVHelper()
         texts = cvhelper.detect(image)
-        descriptions = []
-        for text in texts:
-            descriptions.append(text.description)
+        event_strings = cvhelper.matcher(texts)
 
-        data = dict(descriptions=descriptions)
+        data = dict(descriptions=event_strings)
         output_dict = json.dumps(data)
         output_json = json.loads(output_dict)
-
-        # return object with calendar events added
+        # return object with calendar event strings to add
         return Response(output_json)
-
-# TODO: Implement properly
-class CalAuth(APIView):
-    """
-    This API authorizes the app to read/write to the user's google calendar.
-    """
-    def get(self, request):
-        pass
-
-    def post(self, request):
-        SCOPES = 'https://www.googleapis.com/auth/calendar.events'
-        # try:
-        store = file.Storage('token.json')
-        creds = store.get()
-        if not creds or creds.invalid:
-        # except FileNotFoundError:
-            flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-            creds = tools.run_flow(flow, store)
-
-        service = build('calendar', 'v3', http=creds.authorize(Http()))
-
-        return HttpResponse('')

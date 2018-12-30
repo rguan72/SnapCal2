@@ -45,6 +45,10 @@ function sendImage() {
         document.getElementById('ind').style.width = 100 + "%";
         document.getElementById('indText').innerHTML = 'Finished'
 
+        response.json().then(function(data){
+          filloutEvents(data)
+        });
+
         // Reset progress bar after 3 seconds
         setTimeout(function(){
           document.getElementById('ind').setAttribute('aria-valuenow', 10);
@@ -60,69 +64,91 @@ function sendImage() {
     });
 }
 
+function filloutEvents(data) {
+  // Get rid of elements from previous photos taken
+  
+  const summary1 = document.getElementById('event1EntryCont');
+  if (data.descriptions.length == 1) {
+    summary1.value = data.descriptions[0];
+  } else if (data.descriptions.length > 1) {
+    summary1.value = data.descriptions[0];
+    // add the rest of the events
+    for (let i=1; i<data.descriptions.length; ++i) {
+      // create other pills
+      let elt = document.createElement('li');
+      elt.setAttribute('class', 'nav-item');
+      document.getElementById('events-tab').appendChild(elt);
+
+      let elt2 = document.createElement('a');
+      elt2.setAttribute('class', 'nav-link');
+      elt2.setAttribute('href', '#event' + (i+1).toString() + 'Entry');
+      elt2.setAttribute('id', 'event' + (i+1).toString() + '-tab');
+      elt2.setAttribute('data-toggle', 'pill');
+      elt2.setAttribute('role', 'tab');
+      elt2.setAttribute('aria-controls', 'event' + (i+1).toString() + 'Entry');
+      elt2.setAttribute('aria-selected', 'false');
+      elt2.innerHTML = 'Event ' + (i+1).toString();
+      elt.appendChild(elt2);
+
+      // create other entries
+      let entry = document.createElement('div');
+      entry.setAttribute('class', 'tab-pane fade');
+      entry.setAttribute('id', 'event' + (i+1).toString() + 'Entry');
+      entry.setAttribute('role', 'tabpanel');
+      entry.setAttribute('aria-labelledby', 'event' + (i+1).toString() + '-tab');
+      document.getElementById('pills-tabContent').appendChild(entry);
+
+      let entry2 = document.createElement('div');
+      entry2.setAttribute('class', 'input-group');
+      entry.appendChild(entry2);
+
+      let entry3 = document.createElement('input');
+      entry3.setAttribute('type', 'text');
+      entry3.setAttribute('class', 'form-control');
+      entry3.setAttribute('placeholder', 'Event Summary');
+      entry3.setAttribute('id', 'event' + (i+1).toString() + 'EntryCont');
+      entry2.appendChild(entry3);
+      // Fill out entry
+      entry3.value = data.descriptions[i];
+    }
+  } else {
+    const alert = document.getElementById('msg');
+    alert.setAttribute('class', 'show alert alert-warning show');
+    alert.innerHTML = `There was no text detected in your photo.
+                      Try taking it from a different angle.`;
+  }
+}
+
 function addEvent() {
   if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-    console.log('Signed In!')
   } else {
     gapi.auth2.getAuthInstance().signIn();
   }
 
-  // Get time zone offset
-  const date1 = new Date();
-  const offset = date1.getTimezoneOffset();
-  const hours = offset/60;
-
-  if (hours < 10) {
-    var tzoffset = '0' + hours.toString() + ':00';
-  } else {
-    var tzoffset = hours.toString() + ':00';
-  }
-
-  const summary = document.getElementById('eventEntry').value;
-  const location = document.getElementById('locationEntry').value;
-  const start_date = document.getElementById('startdateEntry').value;
-  const start_time = document.getElementById('starttimeEntry').value;
-  const end_date = document.getElementById('enddateEntry').value;
-  const end_time = document.getElementById('endtimeEntry').value;
-
-  var event = {
-    'summary': summary,
-    'location': location,
-    'start': {
-      'dateTime': start_date + 'T' + start_time + ':00-' + tzoffset,
-    },
-    'end': {
-      'dateTime': end_date + 'T' + end_time + ':00-' + tzoffset,
-    }
-
-  }
-
-
-  let request = gapi.client.calendar.events.insert({
+  const selectedTab = document.getElementsByClassName('tab-pane fade show active');
+  // get value from input group of selected tab
+  const summary = selectedTab[0].children[0].children[0].value;
+  let request = gapi.client.calendar.events.quickAdd({
     'calendarId': 'primary',
-    'resource': event,
+    'text': summary,
   });
 
-
-  request.execute(function(event) {
+  request.execute(function(event){
     const alert = document.getElementById('msg');
     if (event.htmlLink) {
-      alert.setAttribute("class", "show alert alert-success show");
+      alert.setAttribute('class', 'show alert alert-success show');
       alert.innerHTML = 'Event created: ' + event.htmlLink;
     } else {
       alert.setAttribute("class", "show alert alert-warning show");
-      alert.innerHTML = 'There was an error creating your event. Make sure you entered a start time, end time, and summary.'
+      alert.innerHTML = 'There was an error creating your event. Make sure you entered a start time, end time, and summary.';
     }
-
   });
-
 }
 
 function addButtonListeners() {
   document.getElementById('camBtn').addEventListener('click', function(){
     sendImage();
   });
-
   document.getElementById('submitBtn').addEventListener('click', function(){
     addEvent();
   });

@@ -30,15 +30,13 @@
 
     <!-- Initialize video -->
     <script>getCameraAccess();</script>
-    <video id="player" controls autoplay></video>
+    <video id="player" style="width:600px;max-width:100%" controls autoplay>
+      Your browser does not support HTML5 video.
+    </video>
     <canvas id="canvas" width=320 height=240 hidden=true></canvas>
-
-    <button id="signout_button">Sign Out</button>
-    <button id="authorize_button">Authorize</button>
 
     <div class="row-1">
       <button type="button" class="btn btn-primary btn-lg" id="camBtn">Take Photo</button>
-      <!-- <button type="button" class="btn btn-secondary" id="authBtn"> Authorize Google Calendar</button> -->
     </div>
 
     <div class="row-2-sm top-buffer">
@@ -49,27 +47,21 @@
       </div>
     </div>
 
-    <!-- <ul class="nav nav-pills">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Menu 1</a></li>
-      <li><a href="#">Menu 2</a></li>
-      <li><a href="#">Menu 3</a></li>
-    </ul> -->
+    <ul class="nav nav-pills mb-3 top-buffer" id="events-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="event1-tab" data-toggle="pill" href="#event1Entry" role="tab" aria-controls="event1Entry" aria-selected="True">Event 1</a>
+      </li>
+    </ul>
 
-    <div class="row-3 top-buffer" id="input1">
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="event1Entry" role="tabpanel" aria-labelledby="event1-tab">
         <div class="input-group">
-          <input type="text" class="form-control top-buffer" placeholder="Event Summary" id="eventEntry" />
-          <input type="text" class="form-control top-buffer" placeholder="Location" id="locationEntry" />
+          <input type="text" class="form-control" placeholder="Event Summary" id="event1EntryCont" />
         </div>
-        <div class="input-group">
-          <input type="date" class="form-control" placeholder="Start date" id="startdateEntry" />
-          <input type="time" class="form-control" placeholder="Start time" id="starttimeEntry" />
-          <input type="date" class="form-control" placeholder="End date" id="enddateEntry" />
-          <input type="time" class="form-control" placeholder="End time" id="endtimeEntry" />
-        </div>
-        <button type="button" class="btn btn-secondary top-buffer" id="submitBtn">Add Event</button>
-        <div role="alert" id="msg"></div>
+      </div>
     </div>
+    <button type="button" class="btn btn-secondary top-buffer" id="submitBtn">Add Event</button>
+    <div role="alert" id="msg"></div>
 
 
   <!-- Gcal Auth imports -->
