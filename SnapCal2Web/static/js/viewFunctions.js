@@ -66,7 +66,14 @@ function sendImage() {
 
 function filloutEvents(data) {
   // Get rid of elements from previous photos taken
-  
+  if ($('#events-tab').children().length > 1) {
+    $('#events-tab').children().slice(1).remove();
+  }
+
+  if ($('#events-tabContent').children().length > 1) {
+    $('#events-tabContent').children().slice(1).remove();
+  }
+
   const summary1 = document.getElementById('event1EntryCont');
   if (data.descriptions.length == 1) {
     summary1.value = data.descriptions[0];
@@ -96,7 +103,7 @@ function filloutEvents(data) {
       entry.setAttribute('id', 'event' + (i+1).toString() + 'Entry');
       entry.setAttribute('role', 'tabpanel');
       entry.setAttribute('aria-labelledby', 'event' + (i+1).toString() + '-tab');
-      document.getElementById('pills-tabContent').appendChild(entry);
+      document.getElementById('events-tabContent').appendChild(entry);
 
       let entry2 = document.createElement('div');
       entry2.setAttribute('class', 'input-group');
