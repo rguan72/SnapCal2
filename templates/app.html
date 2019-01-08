@@ -13,11 +13,11 @@
     <link rel="stylesheet" href={% static "css/custom.css" %}>
 
     <title>SnapCal</title>
+    <link rel="shortcut icon" type="image/png" href={% static "images/favicon.ico" %}>
   </head>
 
   <body>
     <h1>SnapCal2</h1>
-    <h2> Take pictures. Add them to your Google Calendar! </h2>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -30,7 +30,7 @@
 
     <!-- Initialize video -->
     <script>getCameraAccess();</script>
-    <video id="player" style="width:600px;max-width:100%" controls autoplay>
+    <video id="player" class="top-buffer" style="width:600px;max-width:100%" controls autoplay>
       Your browser does not support HTML5 video.
     </video>
     <canvas id="canvas" width=320 height=240 hidden=true></canvas>
@@ -39,15 +39,15 @@
       <button type="button" class="btn btn-primary btn-lg" id="camBtn">Take Photo</button>
     </div>
 
-    <div class="row-2-sm top-buffer">
+    <!-- <div class="row-2-sm top-buffer">
       <div class="progress">
         <div class="progress-bar bg-success progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%" id="ind">
           <span class="progress-value" id="indText">Waiting ...</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <ul class="nav nav-pills mb-3 top-buffer" id="events-tab" role="tablist">
+    <ul class="nav nav-tabs top-buffer" id="events-tab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="event1-tab" data-toggle="pill" href="#event1Entry" role="tab" aria-controls="event1Entry" aria-selected="True">Event 1</a>
       </li>
@@ -61,7 +61,16 @@
       </div>
     </div>
     <button type="button" class="btn btn-secondary top-buffer" id="submitBtn">Add Event</button>
-    <div role="alert" id="msg"></div>
+    <div role="alert show active" class="show alert show" id="msg"></div>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">
+          <a href="https://github.com/rguan72/SnapCal2">Source Code</a>
+        </span>
+      </div>
+    </footer>
+
 
 
   <!-- Gcal Auth imports -->

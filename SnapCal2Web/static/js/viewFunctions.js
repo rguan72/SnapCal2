@@ -1,6 +1,8 @@
 function getCameraAccess() {
   const constraints = {
-    video: true,
+    video: {
+      facingMode: "environment"
+            },
     audio: false,
   };
 
@@ -41,20 +43,20 @@ function sendImage() {
         return;
       }
       else {
-        document.getElementById('ind').setAttribute('aria-valuenow', 100);
-        document.getElementById('ind').style.width = 100 + "%";
-        document.getElementById('indText').innerHTML = 'Finished'
+        // document.getElementById('ind').setAttribute('aria-valuenow', 100);
+        // document.getElementById('ind').style.width = 100 + "%";
+        // document.getElementById('indText').innerHTML = 'Finished'
 
         response.json().then(function(data){
           filloutEvents(data)
         });
 
         // Reset progress bar after 3 seconds
-        setTimeout(function(){
-          document.getElementById('ind').setAttribute('aria-valuenow', 10);
-          document.getElementById('ind').style.width = 10 + "%";
-          document.getElementById('indText').innerHTML = 'Waiting ...';
-        }, 3000);
+        // setTimeout(function(){
+        //   document.getElementById('ind').setAttribute('aria-valuenow', 10);
+        //   document.getElementById('ind').style.width = 10 + "%";
+        //   document.getElementById('indText').innerHTML = 'Waiting ...';
+        // }, 3000);
 
         return;
       }
@@ -128,8 +130,8 @@ function filloutEvents(data) {
   } else {
     const alert = document.getElementById('msg');
     alert.setAttribute('class', 'show alert alert-warning show');
-    alert.innerHTML = `There was no text detected in your photo.
-                      Try taking it from a different angle.`;
+    alert.innerHTML = `No text detected.
+                      Try a different angle.`;
   }
 }
 
@@ -151,10 +153,10 @@ function addEvent() {
     const alert = document.getElementById('msg');
     if (event.htmlLink) {
       alert.setAttribute('class', 'show alert alert-success show');
-      alert.innerHTML = 'Event created: ' + event.htmlLink;
+      alert.innerHTML = 'Event created!';
     } else {
       alert.setAttribute("class", "show alert alert-warning show");
-      alert.innerHTML = 'There was an error creating your event. Make sure you entered a start time, end time, and summary.';
+      alert.innerHTML = 'There was an error creating your event.';
     }
   });
 }
