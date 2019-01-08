@@ -22,6 +22,7 @@ pyOpenSSL>=18.0.0
 PySocks>=1.6.8
 python-dateutil>=2.7.3
 pytz>=2018.5
+regex==2018.11.22
 requests>=2.20.0
 ruamel-yaml>=0.15.46
 six>=1.11.0
