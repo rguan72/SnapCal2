@@ -4,11 +4,7 @@ from SnapCal2.settings import BASE_DIR
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from googleapiclient.discovery import build
-from oauth2client import file, client, tools
-from httplib2 import Http
 import base64
-import time
 import json
 from SnapCal2Web.snapcv import CVHelper
 
