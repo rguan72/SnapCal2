@@ -119,6 +119,14 @@ lib/
 
 # For deployment to GAE
 cloud_sql_proxy
+SnapCal2/production_settings.py
+SnapCal2/secret_key.txt
+
+# collected static for cloud storage
+/static/
+
+# secret key
+creds.json
 
 # migrations
 migrations
