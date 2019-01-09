@@ -5,6 +5,10 @@ entrypoint: gunicorn -b :$PORT main:app
 runtime_config:
   python_version: 3
 
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'SnapCal2.production_settings'
+  GOOGLE_APPICATION_CREDENTIALS: 'creds.json'
+
 handlers:
   - url: /images
     static_dir: static/images
