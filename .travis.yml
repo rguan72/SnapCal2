@@ -10,4 +10,8 @@ python:
 install:
 - pip install -r requirements.txt
 
+env:
+- DJANGO_SETTINGS_MODULE=SnapCal2.settings
+- GOOGLE_APPLICATION_CREDENTIALS=./creds.json
+
 script: python manage.py test
