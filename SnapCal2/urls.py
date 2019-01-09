@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.conf.urls import url
+from rest_framework.urlpatterns import format_suffix_patterns
 from SnapCal2Web import views
 
 urlpatterns = [
-    path('', include('SnapCal2Web.urls')),
-    path('admin/', admin.site.urls),
+    url(r'^$', views.index),
+    url(r'^API/img_process', views.ProcessImageResponse.as_view(), name='process_image'),
+    url(r'admin', admin.site.urls),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
