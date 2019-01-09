@@ -136,9 +136,9 @@ function filloutEvents(data) {
 }
 
 function addEvent() {
-  if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-  } else {
+  if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
     gapi.auth2.getAuthInstance().signIn();
+    return;
   }
 
   const selectedTab = document.getElementsByClassName('tab-pane fade show active');
