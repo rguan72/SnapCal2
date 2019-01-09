@@ -120,8 +120,5 @@ lib/
 # For deployment to GAE
 cloud_sql_proxy
 
-# Created for deployment to GAE
-#/static
-
 # migrations
 migrations

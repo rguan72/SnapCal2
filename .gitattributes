@@ -3,8 +3,11 @@
 *.crt filter=git-crypt diff=git-crypt
 *.gpg filter=git-crypt diff=git-crypt
 
-# encrypt secret key
-SnapCal2/settings.py filter=git-crypt diff=git-crypt
-
 # encrypt client id
 SnapCal2Web/static/js/gcalauth.js filter=git-crypt diff=git-crypt
+
+# encrypt application credentials
+creds.json filter=git-crypt diff=git-crypt
+
+# encrypt secret key
+SnapCal2/secret_key.txt filter=git-crypt diff=git-crypt
