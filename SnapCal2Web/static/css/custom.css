@@ -2,17 +2,28 @@
   margin-top: 1em;
 }
 
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #efefef;
-  text-align: center;
+@media screen and (min-height: 802px) {
+  .footer {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #efefef;
+    text-align: center;
+  }
+}
+
+@media screen and (max-height: 802px) {
+  .footer {
+    position: static;
+    background-color: #efefef;
+    text-align: center;
+  }
 }
 
 html {
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -21,5 +32,5 @@ body {
   position: relative;
   margin: 0;
   height: 100%;
-  padding-bottom: 6rem;
+  width: 100%;
 }
