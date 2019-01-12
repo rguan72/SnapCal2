@@ -29,7 +29,10 @@
     <script src={% static "js/viewFunctions.js" %}></script>
 
     <!-- Initialize video -->
-    <script>getCameraAccess();</script>
+    <script>
+      $( document ).ready(getCameraAccess);
+    </script>
+
     <video id="player" class="top-buffer" style="width:600px;max-width:100%" controls autoplay>
       Your browser does not support HTML5 video.
     </video>
@@ -39,28 +42,14 @@
       <button type="button" class="btn btn-primary btn-lg" id="camBtn">Take Photo</button>
     </div>
 
-    <!-- <div class="row-2-sm top-buffer">
-      <div class="progress">
-        <div class="progress-bar bg-success progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%" id="ind">
-          <span class="progress-value" id="indText">Waiting ...</span>
-        </div>
-      </div>
-    </div> -->
-
-    <ul class="nav nav-tabs top-buffer" id="events-tab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="event1-tab" data-toggle="pill" href="#event1Entry" role="tab" aria-controls="event1Entry" aria-selected="True">Event 1</a>
-      </li>
-    </ul>
-
-    <div class="tab-content" id="events-tabContent">
-      <div class="tab-pane fade show active" id="event1Entry" role="tabpanel" aria-labelledby="event1-tab">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Event Summary" id="event1EntryCont" />
-        </div>
+    <div class="top-buffer" id="inputs">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Event Summary" id="event0" />
+        <span type="button" class="input-group-append btn btn-secondary" id="event0Btn">Add Event</span>
       </div>
     </div>
-    <button type="button" class="btn btn-secondary top-buffer" id="submitBtn">Add Event</button>
+    <!-- <button type="button" class="btn btn-primary" id="addAll">Add All</button> -->
+
     <div role="alert show active" class="show alert show" id="msg"></div>
 
     <div class="footer">
@@ -72,7 +61,9 @@
   <!-- Gcal Auth imports -->
   <script src={% static "js/gcalauth.js" %}></script>
 
-  <script>addButtonListeners();</script>
+  <script>
+    $( document ).ready(addButtonListeners);
+  </script>
   <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
