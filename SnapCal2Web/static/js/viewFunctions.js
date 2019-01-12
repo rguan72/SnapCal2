@@ -105,6 +105,13 @@ function addEvent(i) {
     if (event.htmlLink) {
       $('#msg').attr('class', 'show alert alert-success show');
       $('#msg').html('Event created!');
+
+      // Remove input box once event added successfully
+      if (i <= 0) {
+        $(`#event${i}`).val('');
+      } else {
+        $(`#event${i}`).parent().remove();
+      }
     } else {
       $('#msg').attr("class", "show alert alert-warning show");
       $('#msg').html('There was an error creating your event.');
