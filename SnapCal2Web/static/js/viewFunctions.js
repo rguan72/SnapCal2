@@ -71,9 +71,11 @@ function filloutEvents(data) {
   // Fill out other events
   for (let i=1; i<data.descriptions.length; ++i) {
     $('#inputs').append(`
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Event Summary" id="event${i}">
-        <span type="button" class="input-group-append btn btn-secondary" id="event${i}Btn">Add Event</span>
+      <div class="md-form input-group mb-3">
+        <input type="text" class="form-control" placeholder="Event Summary" id="event${i}" />
+        <div class="input-group-append">
+            <button class="btn btn-default md-0 px-3" id="event${i}Btn">Add Event</button>
+        </div>
       </div>
     `);
 
