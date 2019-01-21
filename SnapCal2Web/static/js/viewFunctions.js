@@ -92,6 +92,8 @@ function filloutEvents(data) {
 function addEvent(i) {
   if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
     gapi.auth2.getAuthInstance().signIn();
+    $('#msg').attr('class', 'show alert alert-warning show');
+    $('#msg').html('You are not authenticated. Add event again.');
     return;
   }
 
