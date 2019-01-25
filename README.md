@@ -41,4 +41,4 @@ your own settings.py file (or ask the project maintainer) as it has been encrypt
 This is being developed and deployed on Google Cloud Platform.
 
 # Access the app as a consumer, not developer:
-[SnapCal2](https://snapcal2-225121.appspot.com)
+[SnapCal2](https://snapcal.richardguan.me)
