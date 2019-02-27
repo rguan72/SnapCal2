@@ -20,7 +20,7 @@ Make sure you have pip and pipenv installed on your system.
 Create a virtual environment with Python version 3.7.
 
 
-#Install necessary packages.
+# Install necessary packages.
 Run these commands within the project root directory (SnapCal2)
 ```
 (myenv)$ pipenv install
@@ -29,13 +29,13 @@ Run these commands within the project root directory (SnapCal2)
 
 (myenv)$ pipenv lock
 ```
-#Run in the future
+# Run in the future
 Get in the virtualenv:
 ```
 (myenv)$ pipenv shell
+(myenv)$ python manage.py runserver
 ```
-Run the Django app locally on your computer. Note that you will have to make
-your own settings.py file (or ask the project maintainer) as it has been encrypted.
+Run the Django app locally on your computer. 
 
 # Run app
 This is being developed and deployed on Google Cloud Platform.
