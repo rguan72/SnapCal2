@@ -36,7 +36,7 @@ Get in the virtualenv:
 (myenv)$ python manage.py runserver
 ```
 Run the Django app locally on your computer. 
-This is being developed and deployed on Google Cloud Platform.
+It is being developed and deployed on Google Cloud Platform.
 
 # Access the app as a consumer, not developer:
 [SnapCal2](https://snapcal.richardguan.me)
