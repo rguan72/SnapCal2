@@ -78,6 +78,9 @@ target/
 profile_default/
 ipython_config.py
 
+# VSCode
+.vscode
+
 # pyenv
 .python-version
 
@@ -119,7 +122,6 @@ lib/
 
 # For deployment to GAE
 cloud_sql_proxy
-SnapCal2/production_settings.py
 SnapCal2/secret_key.txt
 
 # collected static for cloud storage

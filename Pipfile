@@ -14,6 +14,7 @@ apiclient = "*"
 google-api-python-client = "*"
 datefinder = "*"
 gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 
